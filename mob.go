@@ -81,7 +81,7 @@ func startTimer(timerInMinutes string) {
 	timeoutInSeconds := timeoutInMinutes * 60
 	timerInSeconds := strconv.Itoa(timeoutInSeconds)
 
-	command := exec.Command("sh", "-c", "( sleep "+timerInSeconds+" && say \"time's up\"; (/usr/bin/osascript -e 'display notification \"time is up\"' || /usr/bin/notify-send \"time is up\")  & )")
+	command := exec.Command("sh", "-c", "( sleep "+timerInSeconds+" && espeak \"time's up\"; (/usr/bin/osascript -e 'display notification \"time is up\"' || /usr/bin/notify-send \"time is up\")  & )")
 	if debug {
 		fmt.Println(command.Args)
 	}
@@ -332,7 +332,7 @@ func silentgit(args ...string) string {
 }
 
 func hasSay() bool {
-	command := exec.Command("which", "say")
+	command := exec.Command("which", "espeak")
 	if debug {
 		fmt.Println(command.Args)
 	}
